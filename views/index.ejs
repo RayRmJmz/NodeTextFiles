@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="https://bulma.io/vendor/fontawesome-free-5.15.2-web/css/all.min.css">
+    <link rel="stylesheet" href="css/mystyles.css">
+    <title>Examn unit II</title>
+</head>
+<body>
+    
+  <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        Lenguajes web
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+
+      </div>
+  
+    </div>
+
+    <!-- <div id="search" class="bd-search">
+      <form action="/search" method="POST">
+        <div class="field has-addons">
+          <div class="control">
+            <input class="input is-rounded" type="text" placeholder="Find a note" name="title">
+          </div>
+          <div class="control">
+            <button class="button is-info" type="submit">Find</button>
+
+          </div>
+        </div>
+      </form>
+    </div> -->
+  </nav>
+
+<br>
+
+  <div class="container is-max-desktop">
+    <% const m=getMessages() %>
+    
+      <% if (m.notify) { %>
+        <div class="notification is-success">
+          <button class="delete" onclick="this.parentElement.style.display='none'" ></button>
+          <% m.notify.forEach((element) => { %>
+            <h1 class="title is-3"><%= element %></h1>
+          <% }) %>
+      </div>
+        <% } %>
+    
+
+   </div>
+  <div class="container is-max-desktop">
+    <h1 class="title is-2">Add new text file</h1>
+    <div class="card">
+      <div class="card-content">
+
+        <form action="/newFile" method="POST">
+
+          <div class="field has-addons">
+            <label class="label">File title</label>
+            
+          </div>
+
+          <div class="field has-addons">
+            <p class="control is-expanded">
+              <input class="input" type="text" name="title" placeholder="File title..." required>
+            </p>
+            <p class="control">
+              <a class="button is-static">
+                .txt
+              </a>
+            </p>
+          </div>
+
+          <div class="field has-addons">
+            <label class="label">File content</label>
+            
+          </div>
+
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="File content...." name="content" required></textarea>
+              </div>
+            </div>
+          </div>
+          <br>  
+          <div class="field">
+
+            
+            <div class="control">
+              <input class="button is-link" type="submit" value="Create new file">
+            </div>
+            
+          </div>
+  
+        </form>
+  
+      </div>
+    </div>
+    
+    
+  </div>
+  <br>
+  <div class="container is-max-desktop">
+    <h1 class="title is-1">Listing txt files</h1>
+    <div class="card">
+        <div class="card-content">
+            <table class="table is-narrow is-fullwidth">
+                <tr>
+                    <th>File Name</th>
+                    <th>Read</th>
+                    <th>Edit</th>
+                    <th>Delte</th>
+                </tr>   
+                <% listFiles.forEach(function(files){ %>
+                  <tr>
+                    <td><%= files %></td>
+                    <td>
+                      <form action="/readFile" method="POST">
+                        <input type="hidden" name="title" value="<%= files %>">
+                        <button class="button is-link" type="submit">Read</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="/editFile" method="POST">
+                        <input type="hidden" name="title" value="<%= files %>">
+                        <button class="button is-primary" type="submit">Edit</button>
+                      </form>
+                    </td>
+                    <td>
+                      <form action="/deleteFile" method="POST">
+                        <input type="hidden" name="title" value="<%= files %>">
+                        <button class="button is-danger" type="submit">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+              <% }); %>
+            </table>
+        </div>
+    </div>
+  </div>
+
+
+    <footer class="footer">
+      <div class="content">
+        <p>© 2021 Tecnológico Nacional de MéxicoInstituto Tecnológico de Colima</p>
+        <p>Author: Raymundo Ramos Jimenez</p>
+      </div>
+    </footer>
+    
+</body>
+</html>
